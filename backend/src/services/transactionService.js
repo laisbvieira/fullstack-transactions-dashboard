@@ -1,7 +1,9 @@
 const { Transaction, User } = require("../models");
 const xlsx = require("xlsx");
+const { Op } = require("sequelize");
 
 module.exports = {
+
   async create(
     userId,
     { description, value, points, status, transactionDate }
@@ -11,19 +13,21 @@ module.exports = {
     const user = await User.findByPk(userId);
     if (!user) throw new Error("Usuário não encontrado");
 
+    const normalizedStatus = (status || "Em avaliação").toLowerCase().trim();
+
+    const ptsString = String(points).replace(/\./g, "").replace(",", ".");
+    const pts = Number(ptsString) || 0;
+
     const transaction = await Transaction.create({
       userId,
       description,
       transactionDate: transactionDate || new Date(),
-      points,
+      points: pts,
       value,
-      status: status || "pending",
+      status: normalizedStatus,
     });
 
-    if (transaction.status === "approved") {
-      user.balance += points;
-      await user.save();
-    }
+    await this.recalculateUserBalance(userId);
 
     return {
       message: "Transação criada com sucesso!",
@@ -85,6 +89,18 @@ module.exports = {
       data.cpf = data.user?.cpf || null;
       return data;
     });
+  },
+
+  async recalculateUserBalance(userId) {
+    const totalPoints = await Transaction.sum("points", {
+      where: { userId, status: "aprovado" },
+    });
+
+    const user = await User.findByPk(userId);
+    if (!user) throw new Error("Usuário não encontrado");
+
+    user.balance = totalPoints || 0;
+    await user.save();
   },
 
   async processUpload(buffer) {

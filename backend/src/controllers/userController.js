@@ -15,7 +15,7 @@ module.exports = {
       const result = await userService.login(req.body);
       return res.status(200).json(result);
     } catch (err) {
-      return res.status(401).json({ error: err.message });
+      return res.status(err.status || 401).json({ error: err.message });
     }
   },
 };

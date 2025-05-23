@@ -8,6 +8,10 @@ module.exports = {
       throw new Error("Nome, e-mail e senha são obrigatórios");
     }
 
+    if (password.length < 8) {
+      throw new Error("A senha deve ter pelo menos 8 caracteres");
+    }
+
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       throw new Error("E-mail já cadastrado");
@@ -37,15 +41,17 @@ module.exports = {
 
   async login({ email, password }) {
     const user = await User.findOne({ where: { email } });
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      throw new Error("Credenciais inválidas");
+
+    const isValidPassword =
+      user && (await bcrypt.compare(password, user.password));
+    if (!user || !isValidPassword) {
+      const error = new Error("Credenciais inválidas");
+      error.status = 401;
+      throw error;
     }
 
     const token = jwt.sign(
-      {
-        userId: user.id,
-        role: user.role,
-      },
+      { userId: user.id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
