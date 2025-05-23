@@ -98,6 +98,9 @@ O frontend estará disponível em: http://localhost:3000
 * Upload de planilhas de transações .xlsx no formato: CPF | Descrição | Data da transação | Valor em pontos | Valor | Status
 * Relatório completo com filtros: CPF, Descrição, Período da transação, Faixa de valor e Status
 
+⚠️ Na pasta assets foi adicionado uma planilha teste para testes
+
+
 ## 📂 Estrutura do projeto
 
 ```text
@@ -116,6 +119,15 @@ fullstack-transactions-dashboard/
 └── README.md
 ```
 
-## ✅ Status
+## Roadmap de melhorias 🛣️
 
-🔧 Em andamento: melhorias visuais e ajustes finais
+🔧 Melhorias no layout e UX
+
+📊 Incluir operações nas transações
+
+📈 Adicionar relatórios gráficos
+
+🔒 Otimizar segurança e autenticação
+
+☁️ Deploy e escalabilidade (Migrar banco de dados para cloud, etc)
+
