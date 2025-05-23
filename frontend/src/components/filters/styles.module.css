@@ -1,0 +1,92 @@
+.container {
+  margin: 1rem 0;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.filters input,
+.filters select {
+  padding: 8px 12px;
+  border: 1px solid var(--purple);
+  border-radius: 8px;
+  background-color: var(--secondary);
+  color: var(--text, #333);
+  font-size: 0.95rem;
+  outline: none;
+  appearance: none;
+  transition: border 0.3s ease;
+  width: 160px; 
+  box-sizing: border-box;
+}
+
+.filters input:focus,
+.filters select:focus {
+  border-color: var(--purple);
+}
+
+.filters input[type="number"]::-webkit-outer-spin-button,
+.filters input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.filters input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.filters select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='12' viewBox='0 0 24 24' width='12' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.filters label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+  color: var(--white);
+  width: 160px; 
+  box-sizing: border-box;
+}
+
+
+.dateGroup {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dateGroup label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+  color: var(--white);
+  width: 160px;
+  box-sizing: border-box;
+}
+
+.button {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  align-items: flex-end; 
+}
+
+.iconWithText {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filters label select,
+.filters label input {
+  margin-top: 10px;
+}

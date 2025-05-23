@@ -1,0 +1,73 @@
+.container {
+  padding: 2rem 3rem;
+  min-height: 100vh;
+}
+
+.header {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h4 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.button {
+  max-width: 230px;
+}
+
+
+.dash {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .dash {
+    flex-direction: row; 
+    align-items: flex-start;
+  }
+
+  .wallet {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .report {
+    flex: 2;
+  }
+}
+
+.wallet {
+  padding-top: 50px;
+}
+
+.report {
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.errorMessage {
+  color: #c0392b;
+  padding: 0.75rem;
+  border: 1px solid #e0b4b4;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.loading {
+  font-size: 1.2rem;
+  color: #888;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.emptyState {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  margin-top: 2rem;
+}
