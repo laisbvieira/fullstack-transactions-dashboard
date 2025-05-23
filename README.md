@@ -39,9 +39,14 @@ cd fullstack-transactions-dashboard
 ### 2. Configure o banco de dados MySQL
 
 Crie um banco de dados chamado nex_challenge (ou o nome de sua preferência).
+Rodar as migrations
+
+Após criar o banco e rodar as migrations para estruturar as tabelas, você pode povoar os dados usando a própria aplicação. Adicionando os dados dos clientes e subindo transações.
 
 ```bash
 CREATE DATABASE nex_challenge;
+npx sequelize-cli db:migrate
+
 ```
 ⚠️ Se mudar o nome, atualize o arquivo .env do backend com o nome correto.
 
@@ -129,5 +134,5 @@ fullstack-transactions-dashboard/
 
 🔒 Otimizar segurança e autenticação
 
-☁️ Deploy e escalabilidade (Migrar banco de dados para cloud, etc)
+☁️ Deploy e escalabilidade (Migrar banco de dados para cloud, criação de Seeders, etc)
 
